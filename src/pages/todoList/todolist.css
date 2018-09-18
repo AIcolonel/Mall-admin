@@ -1,0 +1,10 @@
+.todolist{
+	margin: 50px auto;
+	width: 400px;
+}
+
+.todolist li{
+	margin-top: 10px;
+	list-style: none;
+	border-bottom: 1px dashed red;
+}

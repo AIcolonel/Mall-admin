@@ -1,0 +1,7 @@
+.Sider a.active{
+	color: skyblue !important;
+}
+
+.Sider .ant-menu-item-selected{
+	background-color: transparent !important;
+}
