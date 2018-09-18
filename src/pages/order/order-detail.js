@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 
-import { InputNumber,Breadcrumb,Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
+import { Popconfirm,InputNumber,Breadcrumb,Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete } from 'antd';
 import {connect} from 'react-redux';
 import * as types from './store/action.js';
 
@@ -26,8 +26,9 @@ class NormalOrderDetail extends Component{
 		}
 	}
 
+	
+
 	render(){
-		console.log('111',this.props.orderDetail);
 		const {
 			orderNo,
 			statusDesc,
@@ -38,7 +39,6 @@ class NormalOrderDetail extends Component{
 			createdAt
 		}=this.props.orderDetail
 		let createdTime=moment(createdAt).format('YYYY-MM-DD HH:mm:ss')
-		console.log('222',productList)
 		return (
 			<Layout>
 				<div className="orderDetail">
@@ -73,9 +73,23 @@ class NormalOrderDetail extends Component{
 										<li>
 											<span className="order-payment">总金额：{payment}</span>
 										</li>
-										<li className="order-operation">
-											<span className="off-order">取消订单</span>
-											<span className="pay-order"><a href="/payment.html?orderNo={{orderNo}}">去支付</a></span>
+										<li className="operation">
+											{
+												status == "30"
+												? 
+													<Popconfirm
+													placement="top" 
+													title={"确定已发货"} 
+													onConfirm={()=>{
+														this.props.setOrder(orderNo)
+													}} 
+													okText="确认" 
+													cancelText="取消">
+												        <Button type="primary">去发货</Button>
+												    </Popconfirm>
+												: null	
+											}
+											
 										</li>
 									</ul>
 								</div>
@@ -101,7 +115,7 @@ class NormalOrderDetail extends Component{
 											<ul className="cart-item" data-product-id="{{product._id}}" key={index}>
 												<li className="product-info">
 													<a href="" className="link">
-														<img src="http://localhost:3002/resource/default1.jpg" alt="" />
+														<img src="http://localhost:3000/upload-image/default1.jpg" alt="" />
 														<span>{product.name}</span>
 													</a>
 												</li>
@@ -144,6 +158,10 @@ const mapDispatchToProps=(dispatch)=>{
 	return {
 		handleOrderDetail:(orderNo)=>{
 			const action=types.getOrderDetailAction(orderNo);
+			dispatch(action);
+		},
+		setOrder:(orderNo)=>{
+			const action=types.goSetOrderAction(orderNo);
 			dispatch(action);
 		}
 	}

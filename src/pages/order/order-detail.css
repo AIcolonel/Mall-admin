@@ -20,6 +20,9 @@
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+.product-info a{
+	color: #494747;
+}
 .product-price{
 	width: 10%;
 }
@@ -220,4 +223,7 @@
 	background: #DF25F6;
 	box-sizing: border-box;
 	color: #ccc;
+}
+.operation span{
+	margin: 10px;
 }

@@ -56,5 +56,10 @@ export default (state=defaultState,action)=>{
 		return state.set("orderDetail",action.payload);
 	}
 
+	//处理发货
+	if(action.type==types.GO_SET_ORDER_SUCCESS){
+		return state.set("orderDetail",action.payload);
+	}
+
 	return state;
 }

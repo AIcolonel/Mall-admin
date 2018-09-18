@@ -33,5 +33,8 @@ export const  GET_ORDER_DETAIL = SERVER + 'order/backDetail';
 export const  SEARCH_ORDER = SERVER + 'order/searchOrder';
 
 
+export const  GO_SET_ORDER = SERVER + 'order/setOrder';
+
+
 
 
